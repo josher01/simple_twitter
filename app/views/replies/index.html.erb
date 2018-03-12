@@ -1,1 +1,39 @@
-index.html.erb
+<div class="container-fluid">
+  <div class="row"> 
+    <div class="col-md-4 col-lg-4">
+      <img src="http://via.placeholder.com/150x150" ><br>
+      <%= current_user.name %>
+      <%= current_user.introduction %>
+      <%= link_to 'Edit Profile'%> 
+    </div>
+    <div class="col-lg-8 col-md-8">
+      <h2>Tweet</h2>
+      <div class="row tweets-list">  
+        <div class="col-md-4 col-lg-4">
+            <img src="http://via.placeholder.com/150x150" >
+        </div>
+        <div class="col-md-8 col-lg-8">
+            <%= current_user.name %><span><%= @tweet.created_at %></span><br>
+            <%= @tweet.description %><br>
+        </div>
+      </div>
+
+      <h2>Replies</h2>
+      <% @replies.each do |t| %>
+        <div class="row tweets-list">  
+          <div class="col-md-4 col-lg-4">
+              <img src="http://via.placeholder.com/150x150" >
+          </div>
+          <div class="col-md-8 col-lg-8">
+              <%= t.user.name %><span><%= t.created_at %></span><br>
+              <%= t.comment %><br>
+          </div>
+        </div>
+      <% end %>
+      <%= form_for [@tweet,@reply], method: :post do |f| %>
+        <%= f.text_area :comment, class: 'form-control', placeholder: "What's in your mind? " %><br>
+        <%= f.submit 'Reply'  %>
+      <% end %>  
+    </div>
+  </div>
+</div>
