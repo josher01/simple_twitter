@@ -18,7 +18,8 @@ class TweetsController < ApplicationController
   end
 
   def show
-
+    @tweet = Tweet.find(params[:tweet_id])
+    
   end
 
 
