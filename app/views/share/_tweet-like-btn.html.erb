@@ -1,0 +1,9 @@
+<div class="like">
+  <% if !object.is_liked?(current_user) %>
+    <%= link_to 'Like' , like_tweet_path(object) , method: :post, class: "btn btn-primary" %>
+    <%= object.likes_count || 0 %>
+  <% else %>
+    <%= link_to 'Unlike' , unlike_tweet_path(object) , method: :delete, class: "btn btn-warning" %>
+    <%= object.likes_count || 0 %>
+  <% end %>
+</div>

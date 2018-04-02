@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-4 col-md-4">
-      <%= form_for @tweet, url: tweets_path do |f| %>
+      <%= form_for @tweet do |f| %>
         <%= f.text_area :description, class: 'form-control', placeholder: "What's in your mind? " %><br>
         <%= f.submit 'Tweet'  %>
       <% end %>  
@@ -15,6 +15,7 @@
           <div class="col-md-8 col-lg-8">
               <%= current_user.name %><span><%= t.created_at %></span><br>
               <%= t.description %><br>
+              <%= render :partial=>"share/tweet-like-btn", locals: {object: t} %>
               <%= link_to 'Replies', tweet_replies_path(t) %>
           </div>
         </div>

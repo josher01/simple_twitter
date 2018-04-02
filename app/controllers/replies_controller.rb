@@ -2,7 +2,7 @@ class RepliesController < ApplicationController
   before_action :find_tweet, only: [:index, :create]
 
   def index
-    @replies = @tweet.replies.all
+    @replies = @tweet.replies.order('created_at DESC')
     @reply = Reply.new
   end
 

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = @user.error.full_messsages
     end
-    redirect_to edit_user_path
+    redirect_to tweets_path
   end
 
   private
@@ -21,5 +21,7 @@ class UsersController < ApplicationController
   def user_profile_params
     params.require(:user).permit(:introduction, :name, :avatar)
   end
+
+  
 
 end

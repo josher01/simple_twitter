@@ -7,24 +7,36 @@ class TweetsController < ApplicationController
 
 
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
       flash[:notice] = 'Tweet Created Successfully !'
       redirect_to tweets_path
     else
-      flash[:alert] = @tweet.error.messages
+      flash[:alert] = @tweet.errors.messages
       redirect_to tweets_path
     end
   end
 
+  def like
+    @tweet = Tweet.find(params[:id])
+    @like = Like.create(tweet_id: @tweet.id, user_id: current_user.id)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def unlike
+    @tweet = Tweet.find(params[:id])
+    @like = Like.where(tweet_id: @tweet.id, user_id: current_user.id).destroy_all
+    redirect_back(fallback_location: root_path)
+  end
+
   def show
-    @tweet = Tweet.find(params[:tweet_id])
-    
+    @tweet = Tweet.find(params[:id])
+
   end
 
 
   private
   def tweet_params
-    params.require(:tweet).permit(:description)
+    params.require(:tweet).permit(:description, :user_id)
   end
 end

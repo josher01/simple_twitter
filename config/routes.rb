@@ -1,10 +1,25 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:edit,:update]
-  root 'tweets#index'
-  resources :tweets, only: [:index, :show, :create] do
-    resources :replies, only: [:index,:create]
+  resources :users, only: :show do
+    resources :tweets , only: :index
   end
+  root 'tweets#index'
+  concern :likeable do
+    resources :likes, only: [:create, :destroy]
+  end
+
+  resources :tweets
+  resources :tweets, only: [:show] do
+    resources :replies, only: [:index,:create]
+    member do
+        post :like
+        delete :unlike
+    end
+  end
+
+  
+  
 
   namespace :admin do
     resources :tweets

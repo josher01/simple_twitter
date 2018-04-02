@@ -18,7 +18,7 @@
           <br><br>
         </div>
         <div class="col-md-8 col-lg-8">
-            <%= @user.name %><span><%= @tweet.created_at %></span><br>
+            <%= current_user.name %><span><%= @tweet.created_at %></span><br>
             <%= @tweet.description %><br>
         </div>
       </div>
