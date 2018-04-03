@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   has_many :tweets 
   has_many :replies , through: :tweets
-  has_many :liked_tweets, through: :likes, source: :tweets
- 
+  has_many :liked_tweets, through: :likes, source: :tweet
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
+  has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
+  has_many :followers, through: :inverse_followships, source: :user
+  validates_presence_of :name, uniqueness: {scope: :user_id}
 end
