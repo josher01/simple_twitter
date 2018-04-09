@@ -3,18 +3,19 @@ Rails.application.routes.draw do
   resources :users, only: [:edit,:update]
   resources :users, only: :show do
     resources :tweets , only: :index
+    member do
+      post :follow
+      post :unfollow
+    end  
   end
   root 'tweets#index'
-  concern :likeable do
-    resources :likes, only: [:create, :destroy]
-  end
 
-  resources :tweets
-  resources :tweets, only: [:show] do
+
+  resources :tweets, only: [:show, :index, :create] do
     resources :replies, only: [:index,:create]
     member do
-        post :like
-        delete :unlike
+      post :like
+      post :unlike
     end
   end
 

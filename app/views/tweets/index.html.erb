@@ -22,6 +22,13 @@
       <% end %>
     </div>
     <div class="col-lg-8 col-md-8">
+      <% @pop_users.each do |t| %>
+        <div class="row tweets-list"> 
+          <%= t.name %><br>
+          <%= t.introduction %><br>
+          <%= render :partial=>"share/follow-template", locals: {object: t} if t!=current_user%>
+        </div>
+      <% end %> 
     </div>
   </div>
 </div>

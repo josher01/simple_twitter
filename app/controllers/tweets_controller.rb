@@ -2,6 +2,7 @@ class TweetsController < ApplicationController
   
   def index
     @tweets = Tweet.order(created_at: :desc).first(5)
+    @pop_users = User.order(follower_count: :desc).first(10)
     @tweet = Tweet.new
   end
 
@@ -31,7 +32,6 @@ class TweetsController < ApplicationController
 
   def show
     @tweet = Tweet.find(params[:id])
-
   end
 
 

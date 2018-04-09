@@ -1,1 +1,7 @@
-_follow-template.html.erb
+<div class="follow">
+  <% if !current_user.is_followings?(object) %>
+    <%= link_to 'Follow' , follow_user_path(object.id) , method: :post, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to 'Unfollow' , unfollow_user_path(object.id) , method: :post, class: "btn btn-warning" %>
+  <% end %>
+</div>

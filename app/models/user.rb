@@ -14,4 +14,8 @@ class User < ApplicationRecord
   has_many :inverse_followships, class_name: "Followship", foreign_key: "following_id"
   has_many :followers, through: :inverse_followships, source: :user
   validates_presence_of :name, uniqueness: {scope: :user_id}
+
+  def is_followings?(user)
+    self.followings.include?(user)
+  end
 end
