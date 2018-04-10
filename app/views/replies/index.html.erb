@@ -1,11 +1,19 @@
 <div class="container-fluid">
   <div class="row"> 
-    <div class="col-md-4 col-lg-4">
+    <div class="col-md-3 col-lg-3">
       <%= image_tag current_user.avatar, class: "img-responsive" if current_user.avatar? %>
       <%= current_user.name %>
-      <%= current_user.introduction %>
+      <%= current_user.introduction %><br>
       <%= link_to 'Edit Profile', edit_user_path(current_user.id) %> 
+      <h2>Tweets <%= current_user.tweets.size %></h2><br>
+      <h2>Followings <%= current_user.followings.size %></h2><br>
+      <h2>Followers <%= current_user.follower_count %></h2><br>
+      <h2>Likes <%= current_user.likes_count || 0 %></h2><br>
     </div>
+
+    <div class="col-md-1 col-lg-1">
+    </div>
+
     <div class="col-lg-8 col-md-8">
       <h2>Tweet</h2>
       <div class="row tweets-list">  

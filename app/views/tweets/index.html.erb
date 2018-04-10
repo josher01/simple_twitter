@@ -16,7 +16,7 @@
               <%= t.user.name %><span><%= t.created_at %></span><br>
               <%= t.description %><br>
               <%= render :partial=>"share/tweet-like-btn", locals: {object: t} %>
-              <%= link_to 'Replies', tweet_replies_path(t) %>
+              <%= link_to 'Replies ', tweet_replies_path(t) %><%= t.replies.size %>
           </div>
         </div>
       <% end %>
@@ -24,7 +24,7 @@
     <div class="col-lg-8 col-md-8">
       <% @pop_users.each do |t| %>
         <div class="row tweets-list"> 
-          <%= t.name %><br>
+          <%= link_to t.name, tweets_user_path(t) %><br>
           <%= t.introduction %><br>
           <%= image_tag t.avatar , class: "img-responsive" if t.avatar? %><br>
           <%= render :partial=>"share/follow-template", locals: {object: t} if t!=current_user%>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :followings, :followers, :tweets]
 
   def edit
   end
@@ -28,6 +28,18 @@ class UsersController < ApplicationController
     @followship.destroy
     flash[:notice] = "Followship destroyed !"
     redirect_back(fallback_location: root_path)
+  end
+
+  def followings
+    render "followings"
+  end
+
+  def followers
+    render "followers"
+  end
+
+  def tweets
+    render "tweets"
   end
 
   private

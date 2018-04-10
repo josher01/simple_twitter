@@ -1,0 +1,36 @@
+<div class="row"> 
+    <div class="col-md-3 col-lg-3">
+      <%= image_tag @user.avatar, class: "img-responsive" if @user.avatar? %>
+      <%= @user.name %>
+      <%= @user.introduction %><br>
+      <%= link_to 'Edit Profile', edit_user_path(@user.id) %> 
+      <h2><%= link_to 'Tweets ', tweets_user_path(@user) %><%= @user.tweets.size %></h2><br>
+      <h2><%= link_to 'Followings ', followings_user_path(@user) %><%= @user.followings.size %></h2><br>
+      <h2><%= link_to 'Followers ', followers_user_path(@user) %><%= @user.follower_count %></h2><br>
+      <h2><%= link_to 'Likes ', likes_user_path(@user) %><%= @user.likes_count || 0 %></h2><br>
+    </div>
+
+    <div class="col-md-1 col-lg-1">
+    </div>
+
+    <div class="col-lg-8 col-md-8">
+      <div class="row tweets-list">  
+        <div class="col-md-4 col-lg-4">
+          <% if @user.avatar? %>
+              <%= image_tag @user.avatar, class: "img-responsive" %>
+          <% else %>
+            <img src = "http://via.placeholder.com/200x200" >
+          <% end %>
+          <br><br>
+        </div>
+        <div class="col-md-8 col-lg-8">
+          <% @user.tweets.each do |tweet| %>
+            <%= @user.name %><span><%= tweet.created_at %></span><br>
+            <%= tweet.description %><br>
+            <%= render :partial=>"share/tweet-like-btn", locals: {object: tweet} %>
+            <%= link_to 'Replies ', tweet_replies_path(tweet) %><%= tweet.replies.size %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
