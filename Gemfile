@@ -39,6 +39,8 @@ gem 'jquery-rails'
 gem 'devise', '~> 4.4'
 gem 'ffaker', '~> 2.9'
 gem 'rest-client', '~> 2.0', '>= 2.0.2'
+gem 'kaminari', '~> 1.1', '>= 1.1.1'
+gem 'kaminari-bootstrap', '~> 3.0', '>= 3.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

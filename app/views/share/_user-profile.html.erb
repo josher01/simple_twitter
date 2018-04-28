@@ -1,0 +1,13 @@
+<%= image_tag @user.avatar, class: "img-responsive" if @user.avatar? %>
+<%= @user.name %><br>
+<%= @user.introduction %><br>
+<% if @user == current_user %>
+  <%= link_to 'Edit Profile', edit_user_path(@user.id), class: "btn btn-primary" %> 
+<% else %>
+  <%= link_to 'Follow', followings_user_path(@user.id), class: "btn btn-primary" %> 
+<% end %>
+<h2><%= link_to 'Tweets ', tweets_user_path(@user) %><%= @user.tweets.size %></h2><br>
+<h2><%= link_to 'Followings ', followings_user_path(@user) %><%= @user.followings.size %></h2><br>
+<h2><%= link_to 'Followers ', followers_user_path(@user) %><%= @user.follower_count || 0 %></h2><br>
+<h2><%= link_to 'Likes ', likes_user_path(@user) %><%= @user.likes_count || 0 %></h2><br>
+

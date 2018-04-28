@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :followings, :followers, :tweets]
+  before_action :set_user, only: [:edit, :update, :followings, :followers, :tweets, :likes]
 
   def edit
   end
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = @user.error.full_messsages
     end
-    redirect_to tweets_path
+    redirect_to tweets_user_path(@user)
   end
 
   def follow
@@ -40,6 +40,10 @@ class UsersController < ApplicationController
 
   def tweets
     render "tweets"
+  end
+
+  def likes
+    @liked_tweets = @user.liked_tweets
   end
 
   private

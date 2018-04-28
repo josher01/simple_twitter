@@ -1,8 +1,8 @@
 class TweetsController < ApplicationController
   
   def index
-    @tweets = Tweet.order(created_at: :desc).first(5)
-    @pop_users = User.order(follower_count: :desc).first(10)
+    @tweets = Tweet.order(created_at: :desc).page(params[:page]).per(15)
+    @pop_users = User.order(follower_count: :desc).page(params[:page]).per(10)
     @tweet = Tweet.new
   end
 

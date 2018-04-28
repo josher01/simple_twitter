@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-lg-4 col-md-4">
       <%= form_for @tweet do |f| %>
-        <%= f.text_area :description, class: 'form-control', placeholder: "What's in your mind? " %><br>
+        <%= f.text_area :description, class: 'form-control', placeholder: "What's in your mind? ", maxlength: '140' %><br>
         <%= f.submit 'Tweet'  %>
       <% end %>  
       <% @tweets.each do |t| %>
@@ -33,3 +33,7 @@
     </div>
   </div>
 </div>
+<div class="text-center">
+  <%= paginate @tweets %>
+</div>
+

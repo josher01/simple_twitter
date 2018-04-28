@@ -43,7 +43,7 @@
             <br><br>
           </div>
           <div class="col-md-8 col-lg-8">
-              <%= t.user.name %><span><%= t.created_at %></span><br>
+              <%= link_to t.user.name, tweets_user_path(t.user)  %><span><%= t.created_at %></span><br>
               <%= t.comment %><br>
           </div>
         </div>
