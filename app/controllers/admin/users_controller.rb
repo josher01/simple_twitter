@@ -1,18 +1,10 @@
-class Admin::TweetsController < ApplicationController
+class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
   def index
-    @tweets = Tweet.all.page(params[:page]).per(15)
+    @users = User.all.order(tweets_count: :desc).page(params[:page]).per(15)
     render :index
   end
-
-  def destroy
-    @tweet = Tweet.find(params[:id])
-    @tweet.destroy
-    redirect_to admin_tweets_path
-  end
-
-  
 
   private
   def authenticate_admin

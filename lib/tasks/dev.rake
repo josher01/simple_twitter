@@ -29,7 +29,7 @@ namespace :dev do
       puts "#{Tweet.count} tweets created !"
     end
 
-    task fake_replies: :environment do
+    task fake_replies: :environment do 
       Reply.destroy_all
       Tweet.all.each do |tweet|
         3.times do |i|

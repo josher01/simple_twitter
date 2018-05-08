@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-lg-8 col-md-8">
-      <% @user.liked_tweets.each do |tweet| %>
+      <% @liked_tweets.each do |tweet| %>
         <div class="row tweets-list">  
           <div class="col-md-4 col-lg-4">
             <% if tweet.user.avatar? %>

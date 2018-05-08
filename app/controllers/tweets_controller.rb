@@ -30,10 +30,6 @@ class TweetsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def show
-    @tweet = Tweet.find(params[:id])
-  end
-
 
   private
   def tweet_params

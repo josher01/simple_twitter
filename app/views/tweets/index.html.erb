@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-lg-4 col-md-4">
       <%= form_for @tweet do |f| %>
-        <%= f.text_area :description, class: 'form-control', placeholder: "What's in your mind? ", maxlength: '140' %><br>
+        <%= f.text_area :description, class: 'form-control', placeholder: "What's in your mind? ", maxlength: '140',rows: "7"%><br>
         <%= f.submit 'Tweet'  %>
       <% end %>  
       <% @tweets.each do |t| %>
@@ -22,6 +22,7 @@
       <% end %>
     </div>
     <div class="col-lg-8 col-md-8">
+      <h2>Popular Users</h2>
       <% @pop_users.each do |t| %>
         <div class="row tweets-list"> 
           <%= link_to t.name, tweets_user_path(t) %><br>
