@@ -10,3 +10,4 @@ class Tweet < ApplicationRecord
     self.likers.include?(user)
   end
 end
+
